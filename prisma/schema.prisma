@@ -28,6 +28,7 @@ model Account {
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
+    @@index([userId, id(sort: Desc)])
 }
 
 model Session {
@@ -36,6 +37,8 @@ model Session {
     userId       String
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId, id(sort: Desc)])
 }
 
 model User {
@@ -68,6 +71,8 @@ model Routine {
     userId    String
     user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
     exercises Exercise[]
+
+    @@index([userId, createdAt(sort: Desc)])
 }
 
 model Exercise {
@@ -78,5 +83,7 @@ model Exercise {
     sets Int
     routine Routine @relation(fields: [routineId], references: [id], onDelete: Cascade)
     routineId String
+
+    @@index([routineId, name(sort: Desc)])
 }
 

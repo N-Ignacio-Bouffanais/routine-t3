@@ -7,23 +7,38 @@ import {
 } from "~/server/api/trpc";
 import { Exercise } from "@prisma/client";
 
-export const exerciseRouter = createTRPCRouter({
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.exercise.findMany();
-  }),
-  getById: publicProcedure.input(z.object({
-      id: z.string(),
-    })).query(({ ctx,input }) => {
-    return ctx.prisma.exercise.findUnique({
-        where: {
-          id: input.id
-        },
+const getExercises = publicProcedure.query(({ctx}) => {
+  return ctx.prisma.exercise.findMany();
+})
+
+const postExercise = publicProcedure
+  .input(
+    z.object({
+      day: z.string().trim().toLowerCase().min(5).max(9),
+      nameEx: z.string().min(3),
+      reps: z.number().min(3).max(40),
+      weight: z.number().min(2).max(150),
+      sets: z.number().min(1).max(7),
+      authorEmail: z.string(),
     })
-  }),
-  // create: protectedProcedure.input(
-  //   z.object({
-  //       title: z.string().min(1).max(50),
-  //       category: z.string().min(4).max(15),
-  //   })
-  // ),
+  )
+  .mutation(({ input, ctx }) => {
+    return ctx.prisma.exercise.create({
+      data: {
+        day: input.day,
+        nameEx: input.nameEx,
+        reps: input.reps,
+        weight: input.weight,
+        sets: input.sets,
+        user: {
+          connect: {
+            email: input.authorEmail,
+          },
+        },
+      },
+    });
+  });
+
+export const exerciseRouter = createTRPCRouter({
+  get: getExercises,
 });

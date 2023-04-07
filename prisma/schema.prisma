@@ -71,8 +71,8 @@ model Exercise {
     reps Int
     weight Int
     sets Int
-    userId    String
-    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId    String?
+    user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@index([userId, createdAt(sort: Desc)])
 }

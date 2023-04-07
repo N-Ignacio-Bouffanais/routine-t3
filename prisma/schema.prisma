@@ -49,7 +49,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    routines      Routine[]
+    exercises      Exercise[]
 }
 
 model VerificationToken {
@@ -60,30 +60,20 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
-// models routines and exercises
-
-model Routine {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    title     String
-    category  String
-    userId    String
-    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-    exercises Exercise[]
-
-    @@index([userId, createdAt(sort: Desc)])
-}
+// models exercises
 
 model Exercise {
     id String @id @default(cuid())
-    name String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    day String
+    nameEx String
     reps Int
     weight Int
     sets Int
-    routine Routine @relation(fields: [routineId], references: [id], onDelete: Cascade)
-    routineId String
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@index([routineId, name(sort: Desc)])
+    @@index([userId, createdAt(sort: Desc)])
 }
 

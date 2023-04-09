@@ -39,6 +39,22 @@ const postExercise = publicProcedure
     });
   });
 
+const deleteExercise = publicProcedure
+  .input(z.object({
+    id: z.string()
+  }))
+  .mutation(async ({ ctx,input }) => {
+    const deletedExercise = await ctx.prisma.exercise.delete({
+      where:{
+        id: input.id,
+      }
+    })
+    if (!deletedExercise) throw new Error("Note not found");
+    return true;
+  });
+
 export const exerciseRouter = createTRPCRouter({
   get: getExercises,
+  create: postExercise,
+  delete: deleteExercise,
 });

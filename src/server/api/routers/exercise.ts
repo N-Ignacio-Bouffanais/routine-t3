@@ -7,8 +7,8 @@ import {
 } from "~/server/api/trpc";
 import { Exercise } from "@prisma/client";
 
-const getExercises = publicProcedure.query(({ctx}) => {
-  return ctx.prisma.exercise.findMany();
+const getExercises = publicProcedure.query(async ({ctx}) => {
+  return await ctx.prisma.exercise.findMany();
 })
 
 const postExercise = publicProcedure
@@ -22,8 +22,8 @@ const postExercise = publicProcedure
       authorEmail: z.string(),
     })
   )
-  .mutation(({ input, ctx }) => {
-    return ctx.prisma.exercise.create({
+  .mutation(async ({ input, ctx }) => {
+    const result = await ctx.prisma.exercise.create({
       data: {
         day: input.day,
         nameEx: input.nameEx,
@@ -37,6 +37,7 @@ const postExercise = publicProcedure
         },
       },
     });
+    return result;
   });
 
 const getById = publicProcedure.input(z.object({

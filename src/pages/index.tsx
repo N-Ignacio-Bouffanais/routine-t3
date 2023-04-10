@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <div className="w-4/5 mx-auto ">
           <h1 className="text-white font-semibold text-3xl py-4">Make yours routines</h1>
           <picture className="opacity-60">
-            <Image className="rounded-md" src={"/running.jpg"} alt="Picture of a man doing workout" width={400} height={400} />
+            <Image className="rounded-xl" src={"/running.jpg"} alt="Picture of a man doing workout" width={400} height={400} />
           </picture>
         </div>
       </main>

@@ -1,12 +1,16 @@
 import { AiFillHome } from 'react-icons/ai'
+import { BsFillPersonFill } from 'react-icons/bs'
 
 
 const Footer = () => {
     return (
         <footer className="bg-dark-blue pb-6">
-            <ul className="flex rounded-2xl bg-gray-600 h-16 w-4/5 mx-auto p-5 items-center">
-                <li>
-                    <AiFillHome className='text-white w-8 h-8'/>
+            <ul className="flex rounded-3xl bg-gray-600 h-14 w-4/5 mx-auto py-2 items-center justify-center">
+                <li className='px-5'>
+                    <AiFillHome className='text-white w-8 h-10'/>
+                </li>
+                <li className='px-5'>
+                    <BsFillPersonFill className='text-white w-8 h-10' />
                 </li>
             </ul>
         </footer>

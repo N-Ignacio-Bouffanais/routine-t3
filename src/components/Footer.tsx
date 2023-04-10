@@ -1,7 +1,8 @@
 const Footer = () => {
     return (
         <footer>
-            <p>Footer</p>
+           <ul className="flex rounded bg-gray-500">
+            <li></li></ul> 
         </footer>
     )
 }

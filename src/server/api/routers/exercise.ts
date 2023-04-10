@@ -48,7 +48,8 @@ const getById = publicProcedure.input(z.object({
         id: input.id,
       }
     })
-      return result;
+    if (!result) throw new Error("Exercise not found");
+    return result;
     } catch (error) {
       console.log(error)
     }
@@ -77,6 +78,7 @@ const updateExercise = publicProcedure.input(
         sets: input.sets,
       }
     })
+    if (!result) throw new Error("Exercise not found");
     return result;
   } catch (error) {
     console.error(error);
@@ -93,7 +95,7 @@ const deleteExercise = publicProcedure
         id: input.id,
       }
     })
-    if (!deletedExercise) throw new Error("Note not found");
+    if (!deletedExercise) throw new Error("Exercise not found");
     return true;
   });
 

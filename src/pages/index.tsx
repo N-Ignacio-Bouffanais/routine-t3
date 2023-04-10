@@ -17,9 +17,12 @@ const Home: NextPage = () => {
       <main className="flex bg-dark-blue h-screen ">
         <div className="w-4/5 mx-auto ">
           <h1 className="text-white font-semibold text-3xl py-4">Make yours routines</h1>
-          <picture className="opacity-60">
+          <picture>
             <Image className="rounded-xl" src={"/running.jpg"} alt="Picture of a man doing workout" width={400} height={400} />
           </picture>
+          <div className="py-5">
+            <button className="rounded-full bg-green-400 px-4 py-2 font-semibold text-white no-underline transition hover:bg-white/20">Create routine</button>
+          </div>
         </div>
       </main>
     </>

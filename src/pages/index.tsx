@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             <Image className="rounded-xl" src={"/running.jpg"} alt="Picture of a man doing workout" width={400} height={400} />
           </picture>
           <div className="py-5">
-            <button className="rounded-full bg-green-400 px-4 py-2 font-semibold text-white no-underline transition hover:bg-white/20">Create routine</button>
+            <button className="rounded-full bg-green-400 px-4 py-2 font-semibold text-black no-underline transition hover:bg-white/20">New routine</button>
           </div>
         </div>
       </main>

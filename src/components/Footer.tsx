@@ -4,8 +4,8 @@ import { BsFillPersonFill } from 'react-icons/bs'
 
 const Footer = () => {
     return (
-        <footer className="bg-dark-blue">
-            <ul className="flex bg-blue-950 h-20 mx-auto pt-2 pb-4 items-center justify-center">
+        <footer className="bg-dark-blue ">
+            <ul className="flex bg-gray-blue h-20 mx-auto pt-2 pb-4 items-center justify-center">
                 <li className='px-5'>
                     <AiFillHome className='text-white w-10 h-10'/>
                 </li>

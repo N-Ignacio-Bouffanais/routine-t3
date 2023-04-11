@@ -5,7 +5,7 @@ export const userRouter = createTRPCRouter({
   singupUser: publicProcedure
     .input(
       z.object({
-        name: z.string().nullable(),
+        name: z.string(),
         email: z.string().email(),
       })
     )
@@ -13,7 +13,7 @@ export const userRouter = createTRPCRouter({
       return ctx.prisma.user.create({
         data: {
           email: input.email,
-          name: input.name ? input.name : undefined,
+          name: input.name,
         },
       });
     }),

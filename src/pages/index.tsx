@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
+import Image from 'next/image'
 
 const Home: NextPage = () => {
   const routines = api.exercise.get.useQuery();
@@ -16,10 +17,11 @@ const Home: NextPage = () => {
       <main className="flex bg-dark-blue h-screen ">
         <div className="w-4/5 mx-auto ">
           <h1 className="text-white font-semibold text-3xl py-4">Make yours routines</h1>
-          
-          <div className="py-5">
-            <button className="rounded-full bg-green-400 px-4 py-2 font-semibold text-black no-underline transition hover:bg-white/20">New routine</button>
-          </div>
+          <picture className='my-2'>
+            <Image className="rounded-xl" src={"/running.jpg"} alt="Picture of a man doing workout" width={380} height={400} />
+          </picture>
+          <p className='text-gray-400 my-3 w-96 text-center text-sm'>Make your own workout routines and define how and when do it.</p>
+          <button className="py-2.5 text-white bg-blue-600 rounded-full my-3 w-32 font-semibold hover:bg-blue-700">Join</button>
         </div>
       </main>
     </>

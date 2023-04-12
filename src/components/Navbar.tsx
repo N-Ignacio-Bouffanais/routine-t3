@@ -7,7 +7,6 @@ const Navbar = () => {
                 <AuthShowcase />
             </ul>
         </nav>
-
     )
 }
 

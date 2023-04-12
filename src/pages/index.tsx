@@ -2,6 +2,8 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
 import Image from 'next/image'
+import { signIn, signOut, useSession } from "next-auth/react";
+
 
 const Home: NextPage = () => {
   const routines = api.exercise.get.useQuery();
@@ -24,7 +26,7 @@ const Home: NextPage = () => {
           </div>
           <div className="flex flex-col items-center mx-auto justify-center sm:col-span-1">
             <p className='text-gray-400 my-3 w-96 text-center text-sm sm:w-full'>Make your own workout routines and define how and when do it.</p>
-            <button className="py-2.5 text-white bg-blue-600 rounded-full my-3 w-32 font-semibold hover:bg-blue-700">Join</button>
+            <AuthShowcase/>
           </div>
         </div>
       </main>
@@ -33,5 +35,27 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+const AuthShowcase: React.FC = () => {
+  const { data: sessionData } = useSession();
+
+  return (
+    <>
+      {!sessionData && <div className="flex flex-col">
+        <button
+          className="py-2.5 text-white bg-black rounded-full my-3 w-48 font-semibold hover:bg-slate-800"
+          onClick={() => void signIn('github')}
+        >Sign In with GitHub
+        </button>
+        <button
+          className="py-2.5 text-white bg-blue-600 rounded-full my-3 w-48 font-semibold hover:bg-blue-700"
+          onClick={() => void signIn('google')}
+        >Sign In with Google
+        </button>
+      </div>}
+      
+    </>
+  );
+};
 
 

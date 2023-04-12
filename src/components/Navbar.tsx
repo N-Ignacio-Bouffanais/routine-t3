@@ -16,7 +16,7 @@ export default Navbar
 const AuthShowcase: React.FC = () => {
     const { data: sessionData } = useSession();
 
-    let image = sessionData?.user.image;
+    const image = sessionData?.user.image;
 
     return (
         <div className="flex items-center justify-center gap-4">

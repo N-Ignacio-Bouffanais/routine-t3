@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
 import Image from 'next/image'
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getProviders, signIn, useSession, getSession } from "next-auth/react";
 
 
 const Home: NextPage = () => {
@@ -57,5 +57,18 @@ const AuthShowcase: React.FC = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context)
+  if (session) {
+    return {
+      redirect: {
+        destination: '/home',
+        permanent: false,
+      }
+    }
+  }
+  return { props: { providers: await getProviders() } };
+}
 
 

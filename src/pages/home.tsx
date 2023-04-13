@@ -4,20 +4,25 @@ import { useState } from 'react';
 import ItemModal from '~/components/ItemModal';
 import { api } from "~/utils/api";
 import exercises_images from '~/utils/exercises_img';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const Home: NextPage = () => {
   const [modalOpen, setmodalOpen] = useState<boolean>(false)
 
-  //const routines = api.exercise.get.useQuery();
+  const routines = api.exercise.get.useQuery();
+  console.log(routines.data?.length)
 
   return (
     <>{modalOpen && <ItemModal setmodalOpen={setmodalOpen} />}
-      <div className='flex flex-col items-center bg-dark-blue sm:mx-auto sm:flex-wrap'>
-        <div className="py-5 flex justify-center w-4/5">
-          <div className='grid bg-gray-600 h-96 rounded-2xl w-40'>
-            <p>Routine:</p>
+      <div className='flex justify-center bg-dark-blue sm:mx-auto sm:flex-wrap'>
+        <div className="py-5 flex flex-col justify-center w-4/5">
+          <h2 className='text-slate-50 text-xl py-2 font-semibold'>Routines:</h2>
+          <div className='grid bg-gray-600 mx-auto h-24 rounded-2xl w-full sm:w-4/5'>
+            
           </div>
-          <button onClick={() => setmodalOpen(true)} className="rounded-2xl bg-blue-500 px-2 w-40 py-2 font-semibold text-white no-underline transition hover:bg-white/20">New routine</button>
+          <div className='flex w-full justify-end'>
+            <button onClick={() => setmodalOpen(true)} className="flex items-center justify-center my-4 rounded-full bg-blue-500 h-10 w-10 font-bold text-lg text-white no-underline transition hover:bg-white/20"><AiOutlinePlus /></button>
+          </div>
         </div>
       </div>
     </>

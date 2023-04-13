@@ -1,14 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { api } from "~/utils/api";
 import Image from 'next/image'
 import { getProviders, signIn, useSession, getSession } from "next-auth/react";
 
-
 const Home: NextPage = () => {
-  const routines = api.exercise.get.useQuery();
-  console.log(routines.data)
-
   return (
     <>
       <Head>

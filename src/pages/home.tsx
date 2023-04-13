@@ -1,7 +1,11 @@
 import { getSession } from 'next-auth/react'
+import { api } from "~/utils/api";
 import exercises_images from '~/utils/exercises_img';
 
 const Home = () => {
+  const routines = api.exercise.get.useQuery();
+  console.log(routines.data)
+
   return (
     <div className='flex flex-col items-center sm:mx-auto bg-dark-blue sm:flex-wrap'>
       <div className="py-5">
@@ -16,7 +20,6 @@ const Select = () => {
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context)
-
   if(!session){
     return{
       redirect: {
@@ -28,7 +31,6 @@ export async function getServerSideProps(context: any) {
   return {
     props: session
   }
-
 }
 
 export default Home

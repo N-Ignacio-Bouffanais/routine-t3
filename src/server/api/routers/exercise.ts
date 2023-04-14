@@ -3,9 +3,7 @@ import { z } from "zod";
 import {
   createTRPCRouter,
   publicProcedure,
-  protectedProcedure,
 } from "~/server/api/trpc";
-import { Exercise } from "@prisma/client";
 
 const getExercises = publicProcedure.query(async ({ctx}) => {
   return await ctx.prisma.exercise.findMany();

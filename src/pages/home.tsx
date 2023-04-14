@@ -1,13 +1,14 @@
-import { NextPage } from 'next';
 import { getSession } from 'next-auth/react'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ItemModal from '~/components/ItemModal';
 import { api } from "~/utils/api";
 import exercises_images from '~/utils/exercises_img';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { NextPage } from 'next';
 
 const Home: NextPage = () => {
   const [modalOpen, setmodalOpen] = useState<boolean>(false)
+  const [email, setEmail] = useState<string>('')
 
   const routines = api.exercise.get.useQuery();
   console.log(routines.data?.length)

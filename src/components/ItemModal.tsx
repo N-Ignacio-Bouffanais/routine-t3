@@ -1,11 +1,15 @@
 import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction, useState } from "react"
 import { api } from "~/utils/api";
+import { useAppStore } from "~/store/App_state";
+
 
 interface ItemModalProps{
   setmodalOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const ItemModal: FC<ItemModalProps> = ({ setmodalOpen }) => {
+const ItemModal: FC<ItemModalProps> = () => {
+  const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
+
   const[item, setItem] = useState({
     nameEx: "",
     reps: 0,
@@ -16,7 +20,6 @@ const ItemModal: FC<ItemModalProps> = ({ setmodalOpen }) => {
   })
 
   const addItem = api.exercise.create.useMutation()
-  //console.log(setEmail)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -38,7 +41,8 @@ const ItemModal: FC<ItemModalProps> = ({ setmodalOpen }) => {
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Weight" />
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Sets" />
           <button className="h-9 w-80 rounded-md bg-sky-600 text-slate-50 font-semibold">Done</button>
-          <button onClick={() => setmodalOpen(false)} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button>
+          {/* <button onClick={() => setmodalOpen(false)} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button> */}
+          <button onClick={() => setmodalOpen()} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button>
         </form>
       </div>
     </div>

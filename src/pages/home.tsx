@@ -5,13 +5,14 @@ import { api } from "~/utils/api";
 import exercises_images from '~/utils/exercises_img';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { NextPage } from 'next';
+import { useAppStore } from '~/store/App_state';
 
 const Home: NextPage = () => {
-  const [modalOpen, setmodalOpen] = useState<boolean>(false)
-  const [email, setEmail] = useState<string>('')
+  const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
+  // const [modalOpen, setmodalOpen] = useState<boolean>(false)
+  // const [email, setEmail] = useState<string>('')
 
-  const routines = api.exercise.get.useQuery();
-  console.log(routines.data?.length)
+  //const routines = api.exercise.get.useQuery();
 
   return (
     <>{modalOpen && <ItemModal setmodalOpen={setmodalOpen} />}
@@ -22,7 +23,7 @@ const Home: NextPage = () => {
             
           </div>
           <div className='flex w-full justify-end'>
-            <button onClick={() => setmodalOpen(true)} className="flex items-center justify-center my-4 rounded-full bg-blue-500 h-10 w-10 font-bold text-lg text-white no-underline transition hover:bg-white/20"><AiOutlinePlus /></button>
+            <button onClick={() => setmodalOpen()} className="flex items-center justify-center my-4 rounded-full bg-blue-500 h-10 w-10 font-bold text-lg text-white no-underline transition hover:bg-white/20"><AiOutlinePlus /></button>
           </div>
         </div>
       </div>

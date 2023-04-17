@@ -1,4 +1,4 @@
-import { type NextPage } from "next";
+import { type NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from 'next/image'
 import { getProviders, signIn, useSession, getSession } from "next-auth/react";
@@ -53,7 +53,7 @@ const AuthShowcase: React.FC = () => {
   );
 };
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context)
   if (session) {
     return {

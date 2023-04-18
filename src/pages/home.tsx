@@ -14,13 +14,23 @@ const Home: NextPage = () => {
     <>{modalOpen && <ItemModal setmodalOpen={setmodalOpen} />}
       <div className='flex justify-center bg-dark-blue sm:mx-auto sm:flex-wrap'>
         <div className="py-5 flex flex-col justify-center w-4/5">
-          <h2 className='text-slate-50 text-xl py-2 font-semibold'>Routines:</h2>
+          <h1 className='text-slate-50 text-xl py-2 font-semibold'>My Routines:</h1>
           {isLoading && <p>...Loading</p>}
           {(data || []).map((item: any) => (
             <div key={item.id} className='grid bg-gray-600 mx-auto h-24 rounded-2xl w-full sm:w-4/5' >
               <span>{item.nameEx}</span>
             </div>
           ))}
+          <div className=''>
+            <h2 className='text-slate-50 text-xl py-2 font-semibold'>Exercises:</h2>
+            <div className='grid'>
+              {exercises_images.map((image: any) =>(
+                <picture key={image.id}>
+                  <img src={image.src} alt={image.alt} />
+                </picture>
+              ))}
+            </div>
+          </div>
           <div className='flex w-full justify-end'>
             <button onClick={() => setmodalOpen()} className="flex items-center justify-center my-4 rounded-full bg-blue-500 h-10 w-10 font-bold text-lg text-white no-underline transition hover:bg-white/20"><AiOutlinePlus /></button>
           </div>

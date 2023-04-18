@@ -1,18 +1,27 @@
 const exercises_images = [
   {
     id: 1,
-    name: "squat",
-    image: "/squat.jpg",
+    alt: "Image of Squat exercise",
+    category: "leg",
+    src: "/squat.jpg",
   },
   {
     id: 2,
-    name: "deadlift",
-    image: "/deadlift.jpg",
+    alt: "Image of Deadlift exercise",
+    category: "leg",
+    src: "/deadlift.jpg",
   },
   {
     id: 3,
-    name: "bench-press",
-    image: "/bench-press.jpg",
+    alt: "Image of Bench Press exercise",
+    category: "upper-body",
+    src: "/bench-press.jpg",
+  },
+  {
+    id: 4,
+    alt: "Image of Curl biceps exercise",
+    category: "arms",
+    src: "/Curl-biceps.jpg",
   },
 ];
 

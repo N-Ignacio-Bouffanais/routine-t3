@@ -40,8 +40,13 @@ const ItemModal: FC<ItemModalProps> = () => {
     <div className="absolute inset-0 flex items-center justify-center bg-dark-blue">
       <div className="space-y-5 p-3 w-4/5 flex flex-col mx-auto items-center">
         <h3 className="text-slate-300 text-2xl font-semibold">How you gonna do?</h3>
-        <form onSubmit={handleSubmit}>
-          <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" autoFocus type="text" placeholder="Name Exercise" />
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <select className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" autoFocus >
+            <option value="Biceps Curl">Biceps Curl</option>
+            <option value="Squat">Squat</option>
+            <option value="Bench press">Bench press</option>
+            <option value="Deadlift">Deadlift</option>
+          </select>
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Reps" />
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Weight" />
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Sets" />

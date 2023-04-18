@@ -1,4 +1,4 @@
-import { Dispatch, FC, FormEvent, SetStateAction } from "react"
+import { Dispatch, FC, SetStateAction } from "react"
 import { api } from "~/utils/api";
 import { useAppStore } from "~/store/App_state";
 import { useSession } from "next-auth/react";
@@ -25,15 +25,15 @@ const ItemModal: FC<ItemModalProps> = () => {
       const author = sessionData.user.email
       setEmail(author)
     }
-    console.log(day)
     
-    // addItem.mutate({
-    //   nameEx: name,
-    //   reps: reps,
-    //   weight: weight,
-    //   sets: sets,
-    //   authorEmail: email,
-    // })
+    addItem.mutate({
+      nameEx: name,
+      reps: reps,
+      weight: weight,
+      sets: sets,
+      day: day,
+      authorEmail: email,
+    })
   } 
   
   return (
@@ -54,7 +54,7 @@ const ItemModal: FC<ItemModalProps> = () => {
             <option value="sabado">Sabado</option>
             <option value="domingo">Domingo</option>
           </select>
-          <button className="h-9 w-80 rounded-md bg-sky-600 text-slate-50 font-semibold">Done</button>
+          <button onClick={() => setmodalOpen()} className="h-9 w-80 rounded-md bg-sky-600 text-slate-50 font-semibold">Done</button>
         </form>
         <button onClick={() => setmodalOpen()} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button>
       </div>

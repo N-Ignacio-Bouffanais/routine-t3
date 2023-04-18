@@ -42,10 +42,11 @@ const ItemModal: FC<ItemModalProps> = () => {
         <h3 className="text-slate-300 text-2xl font-semibold">How you gonna do?</h3>
         <form onSubmit={handleSubmit} className="space-y-5">
           <select className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" autoFocus >
-            <option value="Biceps Curl">Biceps Curl</option>
+            <option value="Biceps-Curl">Biceps curl</option>
             <option value="Squat">Squat</option>
-            <option value="Bench press">Bench press</option>
+            <option value="Bench-press">Bench press</option>
             <option value="Deadlift">Deadlift</option>
+            <option value="Bulgarian-Squat">Bulgarian squat</option>
           </select>
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Reps" />
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Weight" />

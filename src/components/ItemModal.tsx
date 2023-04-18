@@ -1,7 +1,7 @@
-import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction, useState } from "react"
+import { Dispatch, FC, FormEvent, SetStateAction } from "react"
 import { api } from "~/utils/api";
 import { useAppStore } from "~/store/App_state";
-
+import { useSession } from "next-auth/react";
 
 interface ItemModalProps{
   setmodalOpen: Dispatch<SetStateAction<boolean>>
@@ -9,28 +9,33 @@ interface ItemModalProps{
 
 const ItemModal: FC<ItemModalProps> = () => {
   const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
+  const [email, setEmail] = useAppStore((state) => [state.email, state.updateEmail])
 
-  const[item, setItem] = useState({
-    nameEx: "",
-    reps: 0,
-    weight: 0,
-    sets: 0,
-    day: "",
-    authorEmail: "",
-  })
-
+  const { data: sessionData } = useSession();
   const addItem = api.exercise.create.useMutation()
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(item)
-    addItem.mutate(item)
-
+    let name = (e.currentTarget.elements[0] as HTMLInputElement).value
+    let reps = Number((e.currentTarget.elements[1] as HTMLInputElement).value)
+    let weight = Number((e.currentTarget.elements[2] as HTMLInputElement).value)
+    let sets = Number((e.currentTarget.elements[3] as HTMLInputElement).value)
+    let day = (e.currentTarget.elements[4] as HTMLInputElement).value
+    if (sessionData?.user.email != null) {
+      const author = sessionData.user.email
+      setEmail(author)
+    }
+    console.log(day)
+    
+    // addItem.mutate({
+    //   nameEx: name,
+    //   reps: reps,
+    //   weight: weight,
+    //   sets: sets,
+    //   authorEmail: email,
+    // })
   } 
-  const handleChange = (e:ChangeEvent<HTMLInputElement>)=> {
-    setItem({ ...item, [e.target.name]: e.target.value});
-  }
-
+  
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-dark-blue">
       <div className="space-y-5 p-3 w-4/5 flex flex-col mx-auto items-center">
@@ -40,10 +45,18 @@ const ItemModal: FC<ItemModalProps> = () => {
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Reps" />
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Weight" />
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Sets" />
+          <select className="outline-none flex rounded-md h-9 w-80 px-4 font-medium">
+            <option value="lunes">Lunes</option>
+            <option value="martes">Martes</option>
+            <option value="miercoles">Miercoles</option>
+            <option value="jueves">Jueves</option>
+            <option value="viernes">Viernes</option>
+            <option value="sabado">Sabado</option>
+            <option value="domingo">Domingo</option>
+          </select>
           <button className="h-9 w-80 rounded-md bg-sky-600 text-slate-50 font-semibold">Done</button>
-          {/* <button onClick={() => setmodalOpen(false)} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button> */}
-          <button onClick={() => setmodalOpen()} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button>
         </form>
+        <button onClick={() => setmodalOpen()} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button>
       </div>
     </div>
   )

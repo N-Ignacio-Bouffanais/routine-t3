@@ -1,5 +1,4 @@
 import { getSession } from 'next-auth/react'
-import { useEffect, useState } from 'react';
 import ItemModal from '~/components/ItemModal';
 import { api } from "~/utils/api";
 import exercises_images from '~/utils/exercises_img';
@@ -9,9 +8,6 @@ import { useAppStore } from '~/store/App_state';
 
 const Home: NextPage = () => {
   const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
-  // const [modalOpen, setmodalOpen] = useState<boolean>(false)
-  // const [email, setEmail] = useState<string>('')
-
   //const routines = api.exercise.get.useQuery();
 
   return (
@@ -42,7 +38,7 @@ export async function getServerSideProps(context: any) {
     }
   }
   return {
-    props: session
+    props: {session}
   }
 }
 

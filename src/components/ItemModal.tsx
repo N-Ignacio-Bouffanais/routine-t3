@@ -16,11 +16,11 @@ const ItemModal: FC<ItemModalProps> = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    let name = (e.currentTarget.elements[0] as HTMLInputElement).value
-    let reps = Number((e.currentTarget.elements[1] as HTMLInputElement).value)
-    let weight = Number((e.currentTarget.elements[2] as HTMLInputElement).value)
-    let sets = Number((e.currentTarget.elements[3] as HTMLInputElement).value)
-    let day = (e.currentTarget.elements[4] as HTMLInputElement).value
+    const name = (e.currentTarget.elements[0] as HTMLInputElement).value
+    const reps = Number((e.currentTarget.elements[1] as HTMLInputElement).value)
+    const weight = Number((e.currentTarget.elements[2] as HTMLInputElement).value)
+    const sets = Number((e.currentTarget.elements[3] as HTMLInputElement).value)
+    const day = (e.currentTarget.elements[4] as HTMLInputElement).value
     if (sessionData?.user.email != null) {
       const author = sessionData.user.email
       setEmail(author)

@@ -1,11 +1,11 @@
-import { getSession } from 'next-auth/react'
 import ItemModal from '~/components/ItemModal';
 import { api } from "~/utils/api";
 import exercises_images from '~/utils/exercises_img';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { NextPage } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { useAppStore } from '~/store/App_state';
 import { Exercise } from '@prisma/client';
+import { getSession } from 'next-auth/react';
 
 const Home: NextPage = () => {
   const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
           <div className=''>
             <h2 className='text-slate-50 text-xl py-2 font-semibold'>Exercises:</h2>
             <div className='grid'>
-              {exercises_images.map((image: any) =>(
+              {exercises_images.map<JSX.Element>((image: {id:number, src:string, alt:string, category: string} ) =>(
                 <picture key={image.id}>
                   <img src={image.src} alt={image.alt} />
                 </picture>
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
   )
 }
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) =>{
   const session = await getSession(context)
   if (!session) {
     return {

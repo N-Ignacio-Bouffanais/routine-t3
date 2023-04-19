@@ -5,6 +5,7 @@ import exercises_images from '~/utils/exercises_img';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { NextPage } from 'next';
 import { useAppStore } from '~/store/App_state';
+import { Exercise } from '@prisma/client';
 
 const Home: NextPage = () => {
   const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
         <div className="py-5 flex flex-col justify-center w-4/5">
           <h1 className='text-slate-50 text-xl py-2 font-semibold'>My Routines:</h1>
           {isLoading && <p>...Loading</p>}
-          {(data || []).map((item: any) => (
+          {(data || []).map((item: Exercise) => (
             <div key={item.id} className='grid bg-gray-600 mx-auto h-24 rounded-2xl w-full sm:w-4/5' >
               <span>{item.nameEx}</span>
             </div>

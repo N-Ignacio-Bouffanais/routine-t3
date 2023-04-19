@@ -3,7 +3,7 @@ import { redirect } from "next/dist/server/api-utils";
 
 const Navbar = () => {
     return (
-        <nav className="bg-dark-blue h-16 flex items-center mx-auto">
+        <nav className="bg-dark-blue h-16 flex items-center mx-auto w-full">
             <ul className="flex w-4/5 mx-auto justify-end">
                 <AuthShowcase />
             </ul>

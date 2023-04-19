@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 
   return (
     <>{modalOpen && <ItemModal setmodalOpen={setmodalOpen} />}
-      <div className='flex justify-center bg-dark-blue sm:mx-auto sm:flex-wrap'>
+      <div className='flex justify-center bg-dark-blue w-full sm:mx-auto sm:flex-wrap'>
         <div className="py-5 flex flex-col justify-center w-4/5">
           <h1 className='text-slate-50 text-xl py-2 font-semibold'>My Routines:</h1>
           {isLoading && <p>...Loading</p>}

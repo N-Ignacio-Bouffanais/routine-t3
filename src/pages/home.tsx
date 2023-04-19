@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       <div className='flex justify-center bg-dark-blue w-full sm:mx-auto sm:flex-wrap'>
         <div className="py-5 flex flex-col justify-center w-4/5">
           <h1 className='text-slate-50 text-xl py-2 font-semibold'>My Routines:</h1>
-          {isLoading && <p>...Loading</p>}
+          {isLoading && <p className='text-slate-50 text-xl py-2 font-semibold'>...Loading</p>}
           {(data || []).map((item: Exercise) => (
             <div key={item.id} className='grid bg-gray-600 mx-auto h-24 rounded-2xl w-full sm:w-4/5' >
               <span>{item.nameEx}</span>

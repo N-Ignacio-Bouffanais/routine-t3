@@ -17,6 +17,7 @@ const postExercise = publicProcedure
       reps: z.number().min(3).max(40),
       weight: z.number().min(2).max(150),
       sets: z.number().min(1).max(7),
+      category: z.string().trim().toLowerCase(),
       authorEmail: z.string(),
     })
   )
@@ -28,6 +29,7 @@ const postExercise = publicProcedure
         reps: input.reps,
         weight: input.weight,
         sets: input.sets,
+        category: input.category,
         user: {
           connect: {
             email: input.authorEmail,
@@ -54,35 +56,39 @@ const getById = publicProcedure.input(z.object({
     }
   })
 
-const updateExercise = publicProcedure.input(
-  z.object({
-    id: z.string(),
-    day: z.string().trim().toLowerCase().min(5).max(9),
-    nameEx: z.string().min(3),
-    reps: z.number().min(3).max(40),
-    weight: z.number().min(2).max(150),
-    sets: z.number().min(1).max(7),
-  })
-).mutation(async ({ctx, input}) => {
-  try {
-    const result = await ctx.prisma.exercise.updateMany({
-      where: {
-        id: input.id,
-      },
-      data: {
-        day: input.day,
-        nameEx: input.nameEx,
-        reps: input.reps,
-        weight: input.weight,
-        sets: input.sets,
-      }
+const updateExercise = publicProcedure
+  .input(
+    z.object({
+      id: z.string(),
+      day: z.string().trim().toLowerCase().min(5).max(9),
+      nameEx: z.string().min(3),
+      reps: z.number().min(3).max(40),
+      weight: z.number().min(2).max(150),
+      sets: z.number().min(1).max(7),
+      category: z.string().trim().toLowerCase(),
     })
-    if (!result) throw new Error("Exercise not found");
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-})
+  )
+  .mutation(async ({ ctx, input }) => {
+    try {
+      const result = await ctx.prisma.exercise.updateMany({
+        where: {
+          id: input.id,
+        },
+        data: {
+          day: input.day,
+          nameEx: input.nameEx,
+          reps: input.reps,
+          weight: input.weight,
+          sets: input.sets,
+          category: input.category,
+        },
+      });
+      if (!result) throw new Error("Exercise not found");
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
 const deleteExercise = publicProcedure
   .input(z.object({

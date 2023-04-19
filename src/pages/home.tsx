@@ -18,8 +18,23 @@ const Home: NextPage = () => {
           <h1 className='text-slate-50 text-xl py-2 font-semibold'>My Routines:</h1>
           {isLoading && <p className='text-slate-50 text-xl py-2 font-semibold'>...Loading</p>}
           {(data || []).map((item: Exercise) => (
-            <div key={item.id} className='grid bg-gray-600 mx-auto h-24 rounded-2xl w-full sm:w-4/5' >
-              <span>{item.nameEx}</span>
+            <div key={item.id} className='grid grid-cols-4 gap-2 mx-auto h-24 w-full' >
+              <div className='grid bg-gray-900 h-24 w-full rounded-2xl p-2 items-center'>
+                <p className='text-center text-gray-400 font-medium' >Exercice</p>
+                <p className='text-center text-white font-semibold text-xl' >{item.nameEx}</p>
+              </div>
+              <div className='grid bg-gray-900 h-24 w-full rounded-2xl p-2 items-center'>
+                <p className='text-center text-gray-400 font-medium' >Reps</p>
+                <p className='text-center text-white font-semibold text-xl' >{item.reps}</p>
+              </div>
+              <div className='grid bg-gray-900 h-24 w-full rounded-2xl p-2 items-center'>
+                <p className='text-center text-gray-400 font-medium' >Sets</p>
+                <p className='text-center text-white font-semibold text-xl' >{item.sets}</p>
+              </div>
+              <div className='grid bg-gray-900 h-24 w-full rounded-2xl p-2 items-center'>
+                <p className='text-center text-gray-400 font-medium' >Weight</p>
+                <p className='text-center text-white font-semibold text-xl' >{item.weight}</p>
+              </div>
             </div>
           ))}
           <div className=''>

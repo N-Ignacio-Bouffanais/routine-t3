@@ -25,7 +25,7 @@ const initialState: State = {
   day: "lunes",
 };
 
-export const useAppStore = create<State & Actions>()((set, get) => ({
+export const useAppStore = create<State & Actions>()((set) => ({
   ...initialState,
   modal: false,
   email: "",

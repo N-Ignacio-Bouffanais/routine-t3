@@ -4,10 +4,12 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { useAppStore } from '~/store/App_state';
 import { Exercise } from '@prisma/client';
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import Exercices from '../components/exercices';
 
 const Home: NextPage = () => {
+  const { data: sessionData } = useSession();
+  const image = sessionData?.user.image;
   const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
   const { data, isError, isLoading, error } = api.exercise.get.useQuery()
 
@@ -15,6 +17,9 @@ const Home: NextPage = () => {
     <>{modalOpen && <ItemModal setmodalOpen={setmodalOpen} />}
       <div className='flex justify-center bg-dark-blue w-full sm:mx-auto sm:flex-wrap'>
         <div className="py-5 flex flex-col justify-center w-4/5">
+          {image && <picture>
+            <img className="rounded-full" src={image} alt="profile image" width={50} height={50} />
+          </picture>}
           <h1 className='text-slate-50 text-xl py-2 font-semibold'>My Routine:</h1>
           {isLoading && <p className='text-slate-50 text-xl py-2 font-semibold'>...Loading</p>}
           {(data || []).map((item: Exercise) => (
@@ -38,7 +43,7 @@ const Home: NextPage = () => {
             </div>
           ))}
           <div className='flex w-full justify-end'>
-            <button onClick={() => setmodalOpen()} className="flex items-center justify-center my-4 rounded-full bg-blue-500 h-10 w-10 font-bold text-lg text-white no-underline transition hover:bg-white/20"><AiOutlinePlus /></button>
+            <button onClick={() => setmodalOpen()} className="flex items-center justify-center my-4 rounded-full bg-blue-500 h-10 w-10 font-bold text-lg text-white no-underline transition hover:bg-white/20" title='add new exercise'><AiOutlinePlus /></button>
           </div>
           <Exercices/>
         </div>

@@ -17,7 +17,6 @@ const postExercise = publicProcedure
       reps: z.number().min(3).max(40),
       weight: z.number().min(2).max(150),
       sets: z.number().min(1).max(7),
-      category: z.string().trim().toLowerCase(),
       authorEmail: z.string(),
     })
   )
@@ -29,7 +28,6 @@ const postExercise = publicProcedure
         reps: input.reps,
         weight: input.weight,
         sets: input.sets,
-        category: input.category,
         user: {
           connect: {
             email: input.authorEmail,
@@ -65,7 +63,6 @@ const updateExercise = publicProcedure
       reps: z.number().min(3).max(40),
       weight: z.number().min(2).max(150),
       sets: z.number().min(1).max(7),
-      category: z.string().trim().toLowerCase(),
     })
   )
   .mutation(async ({ ctx, input }) => {
@@ -80,7 +77,6 @@ const updateExercise = publicProcedure
           reps: input.reps,
           weight: input.weight,
           sets: input.sets,
-          category: input.category,
         },
       });
       if (!result) throw new Error("Exercise not found");

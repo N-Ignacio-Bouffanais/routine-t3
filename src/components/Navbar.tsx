@@ -3,21 +3,11 @@ import Link from "next/link";
 
 const Navbar = () => {
     return (
-        <nav className="bg-dark-blue h-16 flex items-center mx-auto w-full">
-            <ul className="flex w-full mx-auto justify-evenly items-center">
-                <li className="text-white font-semibold">
-                    <Link href={"/profile"}>
-                        <p className="w-16 text-center">〱</p>
-                    </Link>
-                </li>
-                <li className="text-white font-semibold">
-                    <Link href={"/profile"}>
-                        <p className="w-14 text-center ml-6">Profile</p>
-                    </Link>
-                </li>
-                <li><AuthShowcase /></li>
-            </ul>
-        </nav>
+        <header>
+            <nav className="bg-dark-blue h-16 pt-6 flex items-center mx-auto w-full">
+                <AuthShowcase />
+            </nav>
+        </header>
     )
 }
 
@@ -27,13 +17,39 @@ const AuthShowcase: React.FC = () => {
     const { data: sessionData } = useSession();
 
     return (
-        <div className="flex items-center justify-center gap-4">
-            <button
-                className="rounded-full border-solid border-yellow-400 border-2 px-4 py-1.5 font-semibold text-white no-underline transition hover:bg-gray-800"
-                onClick={sessionData ? () => void signOut() : () => void signIn()}
-            >
-                {sessionData ? "Sign out" : "Sign in"}
-            </button>
-        </div>
+        <>
+        { sessionData && <ul className="flex w-full mx-auto justify-evenly items-center">
+            <li className="text-white font-semibold">
+                <Link href={"/home"}>
+                        <p className="rounded-full p-2 w-10 text-center hover:bg-gray-800">〱</p>
+                </Link>
+            </li>
+            <li className="text-white font-semibold pl-10">
+                <Link href={"/profile"}>
+                    <p className="rounded-2xl p-2 w-20 text-center text-lg hover:bg-gray-800">Profile</p>
+                </Link>
+            </li>
+            <li>
+                <div>
+                    <button
+                        className="rounded-full border-solid border-yellow-400 border-2 px-4 py-1.5 font-semibold text-white no-underline transition hover:bg-gray-800"
+                        onClick={sessionData ? () => void signOut() : () => void signIn()}
+                    >
+                        Sign Out
+                    </button>
+                </div>
+            </li>
+        </ul>}
+            {!sessionData && <ul className="flex w-4/5 mx-auto  justify-end items-center">
+                <li>
+                    <button
+                        className="rounded-full border-solid border-yellow-400 border-2 px-4 py-1.5 font-semibold text-white no-underline transition hover:bg-gray-800"
+                        onClick={sessionData ? () => void signOut() : () => void signIn()}
+                    >Sign In
+                    </button>
+                </li>
+            </ul>}
+            
+        </>
     );
 };

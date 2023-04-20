@@ -5,7 +5,7 @@ import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { useAppStore } from '~/store/App_state';
 import { Exercise } from '@prisma/client';
 import { getSession } from 'next-auth/react';
-import Exercices from './exercices';
+import Exercices from '../components/exercices';
 
 const Home: NextPage = () => {
   const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])

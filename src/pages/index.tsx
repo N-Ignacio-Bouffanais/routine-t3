@@ -6,11 +6,11 @@ import Exercices from '../components/exercices';
 const Home: NextPage = () => {
   return (
     <>
-      <main className="flex flex-col items-center bg-dark-blue py-0 sm:py-2 w-full min-h-screen">
-        <h1 className="text-white font-semibold text-3xl py-6 w-auto">Good day my friend</h1>
+      <main className="flex flex-col items-center bg-dark-blue w-full min-h-screen">
+        <h1 className="text-white font-semibold text-3xl py-8 w-auto">Good day my friend</h1>
         <div className="grid grid-cols-1 w-4/5 mx-auto md:grid-cols-2 gap-4 items-center">
           <div className="flex flex-col mx-auto items-center">
-            <picture className=''>
+            <picture>
               <Image className="rounded-xl" src={"/running.jpg"} alt="Picture of a man doing workout" width={450} height={300} />
             </picture>
           </div>

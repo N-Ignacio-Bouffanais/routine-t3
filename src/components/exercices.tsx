@@ -2,12 +2,12 @@ import exercises_images from '~/utils/exercises_img';
 
 const Exercices = () => {
   const slideLeft = () => {
-    let slider = document.getElementById('slider') as HTMLInputElement;
+    const slider = document.getElementById('slider') as HTMLInputElement;
     slider.scrollLeft = slider.scrollLeft - 204;
   };
 
   const slideRight = () => {
-    var slider = document.getElementById('slider') as HTMLInputElement;
+    const slider = document.getElementById('slider') as HTMLInputElement;
     slider.scrollLeft = slider.scrollLeft + 204;
   };
   return (

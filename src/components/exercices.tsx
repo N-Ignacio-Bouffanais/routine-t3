@@ -11,8 +11,7 @@ const Exercices = () => {
     slider.scrollLeft = slider.scrollLeft + 204;
   };
   return (
-    <div className='w-4/5 mt-6'>
-      <h2 className='text-slate-50 text-xl py-2 font-semibold'>Exercises:</h2>
+    <div className='w-4/5 my-12'>
       <div className='relative flex items-center'>
         <button className='text-3xl text-white mb-10 font-extrabold cursor-pointer hover:opacity-100' onClick={slideLeft}>＜</button>
         <div className='flex gap-4 overflow-hidden flex-nowrap scroll-smooth' id='slider'>

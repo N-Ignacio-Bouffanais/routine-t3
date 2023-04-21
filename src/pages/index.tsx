@@ -15,7 +15,7 @@ const Home: NextPage = () => {
             </picture>
           </div>
           <div className="flex flex-col items-center mx-auto justify-center md:space-y-4 mt-10">
-            <p className='text-gray-300 w-full px-4 text-center md:px-0 text-sm'>Here you can create your routine with the exercises you want, with tips, a record of days worked and much more.</p>
+            <p className='text-gray-300 w-full px-4 text-center md:px-0 text-sm'>Create your routine with the exercises you want, with tips, a record of days worked and much more.</p>
             <AuthShowcase/>
           </div>
         </div>

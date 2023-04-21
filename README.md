@@ -3,9 +3,10 @@
 
 
 
-<!-- ## Screenshot
+## Screenshot
 
-![solution](./src/assets/trivia.JPG) -->
+![Movile-Solution](./movile)
+![Desktop-Solution](./desktop)
 
 ## Author
 

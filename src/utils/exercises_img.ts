@@ -23,6 +23,12 @@ const exercises_images = [
     name_exercise: "Biceps Curl",
     src: "/Curl-biceps.jpg",
   },
+  {
+    id: 5,
+    alt: "Image of Bulgarian Squat exercise",
+    name_exercise: "Bulgarian Squat",
+    src: "/bulgarian_squat.jpg",
+  },
 ];
 
 export default exercises_images;

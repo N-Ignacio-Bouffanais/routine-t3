@@ -1,10 +1,10 @@
 import { AiFillHome } from 'react-icons/ai'
 import { BsFillPersonFill } from 'react-icons/bs'
 
-
+//pt-10 md:pt-20
 const Footer = () => {
     return (
-        <footer className="bg-dark-blue w-full pt-10 md:pt-20">
+        <footer className="bg-dark-blue w-full ">
             <ul className="flex bg-gray-blue h-20 mx-auto pt-2 pb-4 items-center justify-center">
                 <li className='px-5'>
                     <AiFillHome className='text-white w-10 h-10'/>

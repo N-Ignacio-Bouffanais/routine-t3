@@ -5,7 +5,6 @@ import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { useAppStore } from '~/store/App_state';
 import { Exercise } from '@prisma/client';
 import { getSession, useSession } from 'next-auth/react';
-import Exercices from '../components/exercices';
 
 const Home: NextPage = () => {
   const { data: sessionData } = useSession();
@@ -45,7 +44,6 @@ const Home: NextPage = () => {
           <div className='flex w-full justify-end'>
             <button onClick={() => setmodalOpen()} className="flex items-center justify-center my-4 rounded-full bg-blue-500 h-10 w-10 font-bold text-lg text-white no-underline transition hover:bg-white/20" title='add new exercise'><AiOutlinePlus /></button>
           </div>
-          <Exercices/>
         </div>
       </div>
     </>

@@ -4,12 +4,9 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { useAppStore } from '~/store/App_state';
 import { Exercise } from '@prisma/client';
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 
 const Home: NextPage = () => {
-  const { data: sessionData } = useSession();
-  const name = sessionData?.user.name;
-  const image = sessionData?.user.image;
   const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
   const { data, isError, isLoading, error } = api.exercise.get.useQuery()
 
@@ -17,15 +14,7 @@ const Home: NextPage = () => {
     <>{modalOpen && <ItemModal setmodalOpen={setmodalOpen} />}
       <div className='flex justify-center bg-dark-blue w-full min-h-screen sm:mx-auto sm:flex-wrap'>
         <div className="py-5 flex flex-col items-center w-4/5">
-          {image && <picture>
-            <img className="rounded-full" src={image} alt="profile image" width={70} height={70} />
-          </picture>}
           
-          {name && <p className='text-white my-2'>{name}</p>}
-          <div className='flex flex-col items-center mt-4'>
-            <p className='text-white font-bold text-xl'>{data?.length}</p>
-            <p className='text-slate-500'>Total Exercise</p>
-          </div>
           {isLoading && <p className='text-slate-50 text-xl py-2 font-semibold'>...Loading</p>}
           {(data || []).map((item: Exercise) => (
             <div key={item.id} className='grid grid-cols-4 gap-2 mx-auto h-24 w-full' >

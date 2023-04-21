@@ -13,6 +13,7 @@ export default function Layout({ children }: PropsWithChildren) {
                 <meta name="author" content="Nicolas Bouffanais Lay" />
                 <meta name="robots" content="index" />
                 <meta name="robots" content="follow" />
+                <meta http-equiv="Cache-Control" content="no-store" />
                 <meta charSet="utf-8" />
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="theme-color" content="#0064b6" />

@@ -5,8 +5,8 @@
 
 ## Screenshot
 
-![Movile-Solution](./src/public/movile.JPG)
-![Desktop-Solution](./src/public/desktop.JPG)
+![Movile-Solution](./public/movile.JPG)
+![Desktop-Solution](./public/desktop.JPG)
 
 ## Author
 

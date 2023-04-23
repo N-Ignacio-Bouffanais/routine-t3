@@ -51,7 +51,7 @@ const AuthShowcase: React.FC = () => {
         </button>
         <button
           className="py-2.5 text-white bg-blue-600 rounded-full my-3 w-60 font-semibold hover:bg-blue-700"
-          onClick={() => void signIn('google')}
+          onClick={() => void signIn('facebook')}
         ><p className="flex items-center justify-center">Sign In with Facebook <BsFacebook className="ml-2" /></p> 
         </button>
       </div>

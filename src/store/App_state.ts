@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 type State = {
+  loginModal: boolean;
   email: string;
   modal: boolean;
   nameEx: string;
@@ -11,12 +12,14 @@ type State = {
 };
 
 type Actions = {
+  toggleLoginModal: () => void;
   updateEmail: (email: State["email"]) => void;
   toggleModal: () => void;
 };
 
 const initialState: State = {
   email: "",
+  loginModal: false,
   modal: false,
   nameEx: "",
   reps: 0,
@@ -31,4 +34,5 @@ export const useAppStore = create<State & Actions>()((set) => ({
   email: "",
   updateEmail: (email) => set(() => ({ email: email })),
   toggleModal: () => set((state) => ({ modal: !state.modal })),
+  toggleLoginModal: () => set((state) => ({loginModal: !state.loginModal}))
 }));

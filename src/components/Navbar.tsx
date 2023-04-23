@@ -4,7 +4,7 @@ import Link from "next/link";
 const Navbar = () => {
     return (
         <header>
-            <nav className="bg-dark-blue h-16 pt-6 flex items-center mx-auto w-full">
+            <nav className="bg-dark-blue h-16 pt-2 flex items-center mx-auto w-full">
                 <AuthShowcase />
             </nav>
         </header>
@@ -40,16 +40,6 @@ const AuthShowcase: React.FC = () => {
                 </div>
             </li>
         </ul>}
-            {!sessionData && <ul className="flex w-4/5 mx-auto  justify-end items-center">
-                <li>
-                    <button
-                        className="rounded-full border-solid border-yellow-400 border-2 px-4 py-1.5 font-semibold text-white no-underline transition hover:bg-gray-800"
-                        onClick={sessionData ? () => void signOut() : () => void signIn()}
-                    >Sign In
-                    </button>
-                </li>
-            </ul>}
-            
         </>
     );
 };

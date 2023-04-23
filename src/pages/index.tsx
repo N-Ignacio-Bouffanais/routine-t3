@@ -4,11 +4,12 @@ import Image from "next/image";
 import { BsFacebook, BsGoogle, BsGithub } from "react-icons/bs";
 
 
+
 const Home: NextPage = () => {
   return (
     <>
       <main className="flex flex-col items-center bg-dark-blue w-full min-h-screen">
-        <div className="grid grid-cols-1 gap-4 w-4/5 mx-auto items-center md:grid-cols-2 mb-10">
+        <div className="grid grid-cols-1 gap-4 w-4/5 mx-auto items-center md:grid-cols-2 mb-10 lg:w-4/6">
           <div className="max-md:hidden">
             <picture>
               <Image className="rounded-2xl" src={"/main.jpg"} alt="A men with dumbells in hands" width={300} height={450} />
@@ -30,7 +31,10 @@ export default Home;
 const RegisterShowcase = () => {
   return(
     <>
-    <div className="flex flex-col"></div>
+    <form className="flex flex-col">
+      <input type="email" placeholder="enter your email"/>
+      <input type="password" />
+    </form>
     </>
   )
 }

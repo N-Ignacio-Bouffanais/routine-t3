@@ -40,7 +40,7 @@ const Home: NextPage = () => {
             <button onClick={() => setmodalOpen()} className="flex items-center justify-center my-4 rounded-full bg-blue-500 h-10 w-10 font-bold text-lg text-white no-underline transition hover:bg-white/20" title='add new exercise'><AiOutlinePlus /></button>
           </div>
         </div>
-        <Exercices />
+        {!modalOpen && <Exercices />}
       </div>
     </>
   )

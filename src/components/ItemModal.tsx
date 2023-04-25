@@ -34,6 +34,7 @@ const ItemModal: FC<ItemModalProps> = () => {
       day: day,
       authorEmail: email,
     })
+    console.log(name,reps,sets)
   } 
   
   return (
@@ -61,8 +62,9 @@ const ItemModal: FC<ItemModalProps> = () => {
             <option value="domingo">Domingo</option>
           </select>
           <button onClick={() => setmodalOpen()} className="h-9 w-80 rounded-md bg-sky-600 text-slate-50 font-semibold">Done</button>
+          <button onClick={() => setmodalOpen()} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button>
         </form>
-        <button onClick={() => setmodalOpen()} className="h-9 w-80 rounded-md bg-pink-700 text-slate-50 font-semibold">Cancel</button>
+        
       </div>
     </div>
   )

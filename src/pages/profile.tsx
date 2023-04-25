@@ -27,4 +27,19 @@ const Profile = () => {
   )
 }
 
+// export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) =>{
+//   const session = await getSession(context)
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       }
+//     }
+//   }
+//   return {
+//     props: {session}
+//   }
+// }
+
 export default Profile

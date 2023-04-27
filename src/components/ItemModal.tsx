@@ -26,15 +26,6 @@ const ItemModal: FC<ItemModalProps> = () => {
       setEmail(author)
     }
     
-    addItem.mutate({
-      nameEx: name,
-      reps: reps,
-      weight: weight,
-      sets: sets,
-      day: day,
-      authorEmail: email,
-    })
-    console.log(name,reps,sets)
   } 
   
   return (
@@ -48,6 +39,7 @@ const ItemModal: FC<ItemModalProps> = () => {
             <option value="Bench-press">Bench press</option>
             <option value="Deadlift">Deadlift</option>
             <option value="Bulgarian-Squat">Bulgarian squat</option>
+            <option value="Cardio">Cardio</option>
           </select>
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Reps" />
           <input className="outline-none flex rounded-md h-9 w-80 px-4 font-medium" type="number" placeholder="Weight" />

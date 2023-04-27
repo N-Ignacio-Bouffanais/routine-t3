@@ -30,6 +30,14 @@ model Account {
     @@unique([provider, providerAccountId])
     @@index([userId, id(sort: Desc)])
 }
+model VerificationToken {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    identifier String
+    token      String   @unique
+    expires    DateTime
+
+    @@unique([identifier, token])
+}
 
 model Session {
     id String @id @default(auto()) @map("_id") @db.ObjectId
@@ -52,32 +60,38 @@ model User {
     updatedAt DateTime @updatedAt
     accounts      Account[]
     sessions      Session[]
+    routines       Routine[]
     exercises      Exercise[]
 }
 
-model VerificationToken {
+model Routine {
     id String @id @default(auto()) @map("_id") @db.ObjectId
-    identifier String
-    token      String   @unique
-    expires    DateTime
+    createdAt          DateTime @default(now())
+    updatedAt          DateTime @updatedAt
+    day String  @default("Lunes")
+    totalEx Int @default(0)
+    routineName String @unique
 
-    @@unique([identifier, token])
+    userId    String @db.ObjectId
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    exercises      Exercise[]
+
+    @@index([userId, totalEx(sort: Desc)])
 }
-
-// models exercises
 
 model Exercise {
     id String @id @default(auto()) @map("_id") @db.ObjectId
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    day String
     nameEx String
     reps Int
     weight Int
     sets Int
-    userId    String? @db.ObjectId
-    user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId    String @db.ObjectId
+    routineId String @db.ObjectId
 
-    @@index([userId, createdAt(sort: Desc)])
+    routine   Routine   @relation(fields: [routineId], references: [id], onDelete: Cascade)
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId, nameEx(sort: Desc)])
 }
 

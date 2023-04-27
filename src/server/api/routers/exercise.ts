@@ -17,7 +17,7 @@ const postExercise = publicProcedure
       reps: z.number().min(3).max(40),
       weight: z.number().min(2).max(150),
       sets: z.number().min(1).max(7),
-      authorEmail: z.string(),
+      authorEmail: z.string().email({ message: "Must be a valid email" }),
       routine_name: z.string(),
     })
   )
@@ -35,7 +35,7 @@ const postExercise = publicProcedure
         },
         routine: {
           connect: {
-            routineName: input.routine_name
+            routineName: input.routine_name,
           },
         },
       },

@@ -5,15 +5,16 @@ import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import { useAppStore } from '~/store/App_state';
 //import { Exercise } from '@prisma/client';
 import { getSession } from 'next-auth/react';
+import RoutineModal from '~/components/RoutineModal';
 //import Exercices from '../components/exercices';
 
 const Home: NextPage = () => {
   const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
   const { data, isError, isLoading, error } = api.routine.getAll.useQuery()
   console.log(data)
-  
+
   return (
-    <>{modalOpen && <ItemModal setmodalOpen={setmodalOpen} />}
+    <>{modalOpen && <RoutineModal setmodalOpen={setmodalOpen} />}
       <div className='flex flex-col items-center bg-dark-blue w-full min-h-screen'>
         
         <div className="py-5 flex flex-col items-center w-4/5">

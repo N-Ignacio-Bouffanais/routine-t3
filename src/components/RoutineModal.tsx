@@ -9,25 +9,19 @@ interface RoutineModalProps {
 
 const RoutineModal: React.FC<RoutineModalProps> = () => {
     const [modalOpen, setmodalOpen] = useAppStore((state) => [state.modal, state.toggleModal])
-    const [email, setEmail] = useAppStore((state) => [state.email, state.updateEmail])
 
-    const { data: sessionData } = useSession();
-    const Routine = api.routine.post.useMutation();
+    const {mutate} = api.routine.post.useMutation();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const day = (e.currentTarget.elements[0] as HTMLInputElement).value
         const name = (e.currentTarget.elements[1] as HTMLInputElement).value
-        if (sessionData?.user.email != null) {
-            const author = sessionData.user.email
-            setEmail(author)
-        }
         const Item = {
             day: day,
             routine_name: name,
         }
         console.log(Item)
-        Routine.mutate(Item)
+        mutate(Item)
 
     } 
   return (

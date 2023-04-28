@@ -25,7 +25,6 @@ const RoutineModal: React.FC<RoutineModalProps> = () => {
         const Item = {
             day: day,
             routine_name: name,
-            authorEmail: email,
         }
         console.log(Item)
         Routine.mutate(Item)

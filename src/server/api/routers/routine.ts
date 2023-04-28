@@ -3,7 +3,12 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 const getRoutines = publicProcedure.query(async ({ ctx }) => {
-  return await ctx.prisma.routine.findMany();
+  const routines = await ctx.prisma.routine.findMany({
+    where: {
+      userId: ctx.session?.user.id
+    }
+  });
+  return routines;
 });
 
 const createRoutine = publicProcedure
@@ -11,7 +16,6 @@ const createRoutine = publicProcedure
     z.object({
       day: z.string().min(5).max(9),
       routine_name: z.string(),
-      authorEmail: z.string().email({ message: "Must be a valid email" }),
     })
   )
   .mutation(async ({ input, ctx }) => {
@@ -20,10 +24,10 @@ const createRoutine = publicProcedure
         day: input.day,
         routineName: input.routine_name,
         user: {
-          connect: {
-            email: input.authorEmail,
-          },
-        },
+          connect:{
+            id: ctx.session?.user.id
+          }
+        }
       },
     });
     return result;
